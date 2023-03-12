@@ -1,49 +1,56 @@
 import React, { useState } from 'react'
 import '../styles/App.css';
 
+function ToDo() {
+  return (<tr>
+    <td>
+      <p>id</p>
+    </td>
+    <td>
+      <input />
+    </td>
+    <td>
+      <p>createdAt</p>
+    </td>
+  </tr>)
+}
+
 function App() {
-  const ToDo=(id, createdAt)=>{
-    return (
-      <tr Key={id}>
-        <td>
-          <p>{id} Hey</p>
-        </td>
-        <td>
-          <input />
-        </td>
-        <td>
-          <p>{createdAt}</p>
-        </td>
-      </tr>
-    );
+  const [todos, setTodos] = useState([{
+    id: 'todo1',
+    createdAt: '20:30',
+  }, {
+    id: 'todo2',
+    createdAt: '18:00',
   }
+  ]);
   const reverseTodos = () => {
     setTodos([...todos].reverse());
   };
-  const [todos, setTodos] = useState([
-    {
-      id: "todo1",
-      createdAt: "20:30"
-    },
-    {
-      id: "todo2",
-      createdAt: "18:00"
-    }
-  ]);
 
   return (
     <div id="main">
       <button onClick={reverseTodos}>Reverse</button>
-      <table>
+       <table>
         <tbody>
-          {todos.map((todo) => {
-            ToDo(todo.id, todo.createdAt);
-            console.log(todo);
-          })}
+          {todos.map((todo) => (
+            <tr key={todo.id}>
+              <td>
+                <p>{todo.id}</p>
+              </td>
+              <td>
+                <input />
+              </td>
+              <td>
+                <p>{todo.createdAt}</p>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
-  );
+  )
 }
+
 
 export default App;
